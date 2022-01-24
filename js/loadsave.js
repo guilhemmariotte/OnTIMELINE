@@ -82,7 +82,6 @@ function saveTimeline() {
 				}
 			}
 		});
-		console.log(data_timeline)
 		var filecontents = Papa.unparse(data_timeline, {delimiter:";"});
 		var filename = "frise_chrono.csv";
 		savefile(filecontents, filename, 'text/plain;charset=utf-8');
@@ -102,7 +101,7 @@ function savefile(data, filename, type) {
 		setTimeout(function() {
 			document.body.removeChild(a);
 			window.URL.revokeObjectURL(url);  
-		}, 0); 
+		}, 0);
 	}
 }
 

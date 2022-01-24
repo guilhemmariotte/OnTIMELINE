@@ -17,6 +17,7 @@ const resultslist = document.getElementById("results_list");
 const resultsmsg = document.getElementById("results_msg");
 const submitbtn = document.getElementById("submit_request");
 const additemsbtn = document.getElementById("add_items");
+const confirmmsg = document.getElementById("add_confirm");
 
 
 
@@ -196,7 +197,6 @@ function addToTable(key_en, ind) {
 				subject = subject0.slice(2, subject0.length);
 			}
 		}
-		console.log(data)
 		
 		// Fill the table
 		var itemcontents = [
@@ -239,12 +239,21 @@ function addToTable(key_en, ind) {
 }
 
 
+// Clear the table
+function clearTable(evt) {
+	var numrows = resultstable.rows.length - 1;
+	for (i = 0; i < numrows; i++) {
+		resultstable.deleteRow(1);
+	}
+}
+
+
 // Add items from the table
 function addTableItems(evt) {
 	additemsbtn.disabled = "disabled";
 	additemsbtn.style.cursor = "wait";
 	data_timeline_add = [];
-	for (i = 1; i < resultstable.rows.length; i++){
+	for (i = 1; i < resultstable.rows.length; i++) {
 		var cells = resultstable.rows.item(i).cells;
 		// Append to timeline data to add
 		if (data_timeline_add.length > 0) {
@@ -266,10 +275,18 @@ function addTableItems(evt) {
 			"color": ""
 		});
 	}
+
+	groups.forEach(function (group) {
+		for (var i = 0; i < data_timeline.length; i++) {
+			if (data_timeline[i]["start date"] == "group" & data_timeline[i]["subject"] == group.id) {
+				data_timeline[i]["color"] = group.color;
+			}
+		}
+	});
 	
 	// Timeline data
 	data_timeline = [...data_timeline, ...data_timeline_add];
-	console.log(data_timeline)
+
 	// Timeline groups
 	var groupids = [];
 	// if (groups) {
@@ -289,5 +306,9 @@ function addTableItems(evt) {
 	
 	additemsbtn.disabled = "";
 	additemsbtn.style.cursor = "pointer";
+	confirmmsg.style.display = "block";
+	setTimeout(() => {
+		confirmmsg.style.display = "none";
+	}, 3000);
 }
 

@@ -27,7 +27,6 @@ var pageroot = currentpath.substring(0, currentpath.lastIndexOf("/")+1); // http
 var filename_default = pageroot + "frise_chrono.csv";
 var filetex = pageroot + "main.tex";
 var filetex_source = pageroot + "main_source.tex";
-console.log(filename_default)
 
 document.getElementById("tab_timeline").click();
 
@@ -128,7 +127,6 @@ function loadTimeline() {
 		header: true,
 		download: true,
 		complete: function(results) {
-			console.log(results);
 			
 			// Timeline groups
 			results.data = setTimelineGroups(results.data, []);
