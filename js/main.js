@@ -165,7 +165,7 @@ function setTimelineGroups(results_data, groupids) {
 	for (var i = 0; i < results_data.length; i++) {
 		if (results_data[i]["start date"] != "") {
 			var groupid = results_data[i]["subject"];
-			if (results_data[i]["start date"] == "group") {
+			if (results_data[i]["start date"] == "group") { // groups must be at the top in data_timeline
 				if (!groupids.includes(groupid)) {
 					var item = {
 						id: groupid,
@@ -181,7 +181,6 @@ function setTimelineGroups(results_data, groupids) {
 				}
 			} else {
 				if (!groupids.includes(groupid)) {
-					console.log(results_data)
 					var item = {
 						id: groupid,
 						content: groupid[0].toUpperCase() + groupid.slice(1,groupid.length),
@@ -192,7 +191,6 @@ function setTimelineGroups(results_data, groupids) {
 					}
 					data.push(item);
 					groupids.push(groupid);
-					ind++;
 					// add the group info to the timeline data
 					var elem = {};
 					elem["start date"] = "group";
@@ -204,7 +202,8 @@ function setTimelineGroups(results_data, groupids) {
 					elem["subject"] = item.id;
 					elem["wikipedia link"] = "";
 					elem["color"] = item.color;
-					results_data0.splice(ind, 0, elem);
+					results_data0.splice(ind, 0, elem); // insert at the top
+					ind++;
 				}
 			}
 		}
@@ -329,7 +328,6 @@ function setTimelineGroups(results_data, groupids) {
 			root_css.style.setProperty("--color"+String(index), color);
 			root_css.style.setProperty("--color0"+String(index), color0);
 			groups.update({ id: group.id, color: color });
-			console.log(group)
 		});
 		groupdiv.insertAdjacentElement("afterBegin", colorpicker);
 		

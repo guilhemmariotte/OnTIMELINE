@@ -46,7 +46,6 @@ function submitRequest(evt) {
 		// Results of the request
 		var data = JSON.parse(this.response);
 		data_request = [...data["pages"]];
-		console.log(data_request)
 		// Clear list of results
 		while (resultslist.hasChildNodes()) {
 			resultslist.removeChild(resultslist.lastChild);
@@ -252,6 +251,20 @@ function clearTable(evt) {
 function addTableItems(evt) {
 	additemsbtn.disabled = "disabled";
 	additemsbtn.style.cursor = "wait";
+
+	// Update group colors in existing timeline data
+	if (groups) {
+		groups.forEach(function (group) {
+			for (var i = 0; i < data_timeline.length; i++) {
+				if (data_timeline[i]["start date"] == "group" & data_timeline[i]["subject"] == group.id) {
+					console.log(group)
+					data_timeline[i]["color"] = group.color;
+				}
+			}
+		});
+	}
+
+	// Timeline data to add
 	data_timeline_add = [];
 	for (i = 1; i < resultstable.rows.length; i++) {
 		var cells = resultstable.rows.item(i).cells;
@@ -276,14 +289,6 @@ function addTableItems(evt) {
 		});
 	}
 
-	groups.forEach(function (group) {
-		for (var i = 0; i < data_timeline.length; i++) {
-			if (data_timeline[i]["start date"] == "group" & data_timeline[i]["subject"] == group.id) {
-				data_timeline[i]["color"] = group.color;
-			}
-		}
-	});
-	
 	// Timeline data
 	data_timeline = [...data_timeline, ...data_timeline_add];
 
