@@ -9,4 +9,4 @@ OnTIMELINE is licensed under the terms of the GNU GPL v3 license.
 
 Dependencies
 ------------
-Based on the [vis-timeline.js](https://github.com/visjs/vis-timeline) for timeline visualization and [papaparse.js](https://github.com/mholt/PapaParse) for csv inport/export.
+Based on the [vis-timeline.js](https://github.com/visjs/vis-timeline) for timeline visualization and [papaparse.js](https://github.com/mholt/PapaParse) for csv import/export.
