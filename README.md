@@ -1,7 +1,7 @@
 # OnTIMELINE
 Web application to display and create historical timelines
 
-![Image](ontimeline.png "image")
+![Image](img/ontimeline.png "image")
 
 License
 -------
