@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+
+	<!------------------------------------------------------------------------------------------------------>
+    
+	<head> <!--Info sur la page-->
+        <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+		<link rel="icon" type="image/x-icon" href="favicon.png">
+		<link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
+		<link rel="stylesheet" href="css/w3.css" media="all" type="text/css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<!--[if lte IE 7]>
+			<link rel="stylesheet" href="style_ie.css" />
+        <![endif]-->
+        <title>OnTIMELINE</title>
+    </head>
+	
+	<!------------------------------------------------------------------------------------------------------>
+
+    <body> <!--Corps de la page-->
+		
+		<!-- Header -->
+		<header class="w3-container w3-theme w3-padding" id="myHeader">
+			<div class="w3-center w3-margin-top">
+				<img src="favicon.png" height="120px">
+				</br></br>
+				<img src="img/ontimeline.png" height="120px">
+				<h4>Visualisez et construisez votre frise chronologique en ligne !</h4>
+				<!-- <h1 class="w3-xxxlarge w3-animate-bottom">OnTIMELINE</h1> -->
+				<a href="app.html" target="_blank" class="w3-btn w3-xlarge w3-theme-dark w3-hover-blue-gray w3-light-gray" style="font-weight:900;">
+					<i class="fa fa-rocket w3-xlarge w3-padding-small"></i> Lancer l'application
+				</a>
+			</div>
+		</header>
+		
+		<!-- <div class="w3-center"> -->
+			<!-- <h2>Containers</h2> -->
+			<!-- <p>Use containers to create headers, sections and footers.</p> -->
+		<!-- </div> -->
+
+		<div class="w3-container w3-padding-64 w3-white">
+			<div class="w3-content">
+				<h2 class="w3-center">Description</h2>
+				
+				<p><i class="fa fa-rocket w3-xlarge w3-padding-small"></i> OnTIMELINE est une application en ligne permettant de visualiser et de créer rapidement des frises chronologiques. Elle est accessible librement, elle est destinée aux curieux.ses, novices comme passionné.e.s en histoire, aux enseignant.e.s de matières diverses. Sa philosophie est de pouvoir connecter visuellement différents personnages et événements provenant de domaines variés.</p>
+				<p><i class="fa fa-arrows w3-xlarge w3-padding-small"></i> La visualisation se veut interactive et intuitive. Naviguer dans la frise suit la même logique que la navigation sur une carte : utilisez la molette de votre souris pour zoomer sur une période, déplacez-vous en maintenant le clic enfoncé. Le rendu graphique est accompli par votre navigateur, veillez donc à utiliser une version récente de Firefox, Chrome, Safari ou Opera.</p>
+				<p><i class="fa fa-search w3-xlarge w3-padding-small"></i> OnTIMELINE permet de créer rapidement une frise grâce à des recherches Wikipedia. L'application interroge la base de données Wikipedia afin de récupérer le titre et les dates de nouveaux événements à insérer.</p>
+				<p><i class="fa fa-warning w3-xlarge w3-padding-small"></i> OnTIMELINE est une application 100 % Javascript, rien n'est calculé ni sauvegardé côté serveur. Un nouveau chargement de la page réinitialise l'application : veillez donc à bien télécharger votre fichier de frise pour une utilisation ultérieure.</p>
+			</div>
+		</div>
+		
+		
+		<h2 class="w3-center">Galerie</h2>
+			<div class="w3-content" style="max-width:800px;position:relative">
+			
+			<img class="mySlides w3-animate-opacity" src="img/screenshot1.jpg" style="width:100%">
+			<img class="mySlides w3-animate-opacity" src="img/screenshot2.jpg" style="width:100%">
+			<img class="mySlides w3-animate-opacity" src="img/screenshot3.jpg" style="width:100%">
+			<img class="mySlides w3-animate-opacity" src="img/screenshot4.jpg" style="width:100%">
+			
+			<a class="w3-button w3-hover-dark-grey" style="position:absolute;top:45%;left:0;" onclick="plusDivs(-1)">&#10094;</a>
+			<a class="w3-button w3-hover-dark-grey" style="position:absolute;top:45%;right:0;" onclick="plusDivs(+1)">&#10095;</a>
+		</div>
+		
+		
+		<div class="w3-container w3-padding-64 w3-white">
+			<div class="w3-content">
+				<h2 class="w3-center">A propos</h2>
+				
+				<p>OnTIMELINE est une simple page HTML associée à un code Javascript. Elle est donc par essence ouverte et libre d'accès. Elle est distribuée sous license <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GNU GPL v3</a>.</p>
+				<p>L'affichage de la frise est basé sur la librairie <a href="https://visjs.github.io/vis-timeline/docs/timeline/" target="_blank">vis-timeline</a>. La recherche Wikipedia utilise l'API de <a href="https://api.wikimedia.org/wiki/API_reference" target="_blank">Wikimedia</a> et la base de données <a href="https://www.dbpedia.org/resources/latest-core/" target="_blank">DBpedia</a>. La génération au format PDF utilise le compilateur <a href="https://www.latex-project.org/" target="_blank">LaTeX</a> en ligne <a href="https://latexonline.cc/" target="_blank">latexonline</a>.</p>
+				<p>OnTIMELINE est développée et maintenue par Guilhem Mariotte.</p>
+			</div>
+		</div>
+		
+		
+		<footer class="w3-container w3-padding w3-blue-gray w3-center">
+			<h5>OnTIMELINE by Guilhem Mariotte</h5>
+			<a href="https://github.com/guilhemmariotte/OnTIMELINE" target="_blank"><i class="fa fa-github w3-xlarge w3-padding-small"></i></a>
+			<p class="w3-opacity">Open source application in Javascript. Powered by <a href="https://visjs.org/" target="_blank">vis.js</a>, <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+			<p class="w3-opacity">&copy; 2022. Guilhem Mariotte</p>
+		</footer>
+		
+		
+		<script>
+			// Slideshows
+			var slideIndex = 1;
+
+			function plusDivs(n) {
+			  slideIndex = slideIndex + n;
+			  showDivs(slideIndex);
+			}
+
+			function showDivs(n) {
+			  var x = document.getElementsByClassName("mySlides");
+			  if (n > x.length) {slideIndex = 1}    
+			  if (n < 1) {slideIndex = x.length} ;
+			  for (i = 0; i < x.length; i++) {
+				x[i].style.display = "none";  
+			  }
+			  x[slideIndex-1].style.display = "block";  
+			}
+
+			showDivs(1);
+		</script>
+		
+    </body>
+</html>

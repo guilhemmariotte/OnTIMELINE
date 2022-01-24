@@ -1,0 +1,647 @@
+﻿/* CSS Stylesheet */
+
+/* Marker style ------------------------------------------------------------- */
+
+html
+{
+	height : 100%; /* of the browser window */
+}
+
+@font-face
+{
+	font-family : "myfont";
+	src : url('fonts/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face
+{
+	font-family : "myfont-thin";
+	src : url('fonts/Roboto-Thin.ttf') format('truetype');
+}
+
+@font-face
+{
+	font-family : "myfont-bold";
+	src : url('fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@function hex($hexcolor,$opacity){
+  $red:red($hexcolor);
+  $green:green($hexcolor);
+  $blue:blue($hexcolor);
+  $alpha:alpha($hexcolor);
+  @if $opacity == 1 or $opacity == 100% {
+    @return unquote("rgba(#{$red},#{$green},#{$blue},#{$alpha})");
+  }
+  @else{
+    @return unquote("rgba(#{$red},#{$green},#{$blue},#{$opacity})");
+  }
+}
+
+body, html, h1, h2, h3, h4, nav, p, tr, td, th
+{
+	/* font-family : myfont, "Arial Black", Gisha, "Levenim MT", "Trebuchet MS", "Lucida Sans", "Tempus Sans ITC", "Maiandra GD", Arial, serif; */
+	font-family : sans-serif;
+	/* font-size : 90%; */
+}
+
+h1
+{
+	font-size : 100%;
+	/* text-align : left; */
+	/* color : black; */
+	/* text-shadow : 1px 1px white, -1px -1px black; */
+	/* margin-bottom : 10px; */
+	margin : 0px;
+	padding : 0px;
+}
+
+h2
+{
+	font-size : 100%;
+	margin-top : 20px;
+	margin-left : 0px;
+}
+
+h3
+{
+	font-size : 100%;
+	margin-top : 20px;
+	margin-left : 0px;
+}
+
+h4
+{
+	font-size : 100%;
+	margin-top : 20px;
+	margin-left : 0px;
+}
+
+address
+{
+	font-family : myfont, Arial;
+	font-style : normal;
+	text-align : left;
+	margin-left : 50px;
+}
+
+footer
+{
+    /* position : fixed; */
+	/* width : 300px; */
+	/* margin-left : 40px; */
+	padding-left : 0px;
+	margin-top : 50px;
+	font-size : 70%;
+	/* text-align : left; */
+	/* background-color : green; */
+}
+
+a
+{
+	color : black;
+	text-decoration : none;
+}
+
+nav
+{
+    font-size : 90%;
+}
+
+p a, .tabtxt a
+{
+	/* font-weight : bold; */
+	border-bottom : 1px solid black;
+}
+
+nav a
+{
+    padding-bottom : 0px;
+    text-decoration : none;
+}
+
+p a:hover
+{
+	/* border-bottom : 1px solid black; */
+	color : rgb(100,100,100);
+	border-bottom : 1px solid rgb(100,100,100);
+}
+
+.tabtxt a:hover
+{
+	/* border-bottom : 1px solid black; */
+	color : rgb(100,100,100);
+	border-bottom : 1px solid rgb(100,100,100);
+}
+
+address a:hover
+{
+	border-bottom : 1px solid black;
+	/* color : rgb(100,100,100); */
+}
+
+nav a:hover
+{
+    border-bottom : 1px solid rgb(100,100,100);
+}
+
+a:visited
+{
+	/* color : rgb(100,100,100); */
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+
+
+/* User style --------------------------------------------------------------- */
+
+:root {
+	--color0: #cccccc;
+	--color1: #cccccc;
+	--color2: #cccccc;
+	--color3: #cccccc;
+	--color4: #cccccc;
+	--color5: #cccccc;
+	--color6: #cccccc;
+	--color7: #cccccc;
+	--color8: #cccccc;
+	--color9: #cccccc;
+	
+	--color00: #cccccc;
+	--color01: #cccccc;
+	--color02: #cccccc;
+	--color03: #cccccc;
+	--color04: #cccccc;
+	--color05: #cccccc;
+	--color06: #cccccc;
+	--color07: #cccccc;
+	--color08: #cccccc;
+	--color09: #cccccc;
+	
+	--overflowtype: visible;
+	
+	--itemfontsize: 13px;
+}
+
+
+/* Font size */
+.vis-tooltip
+{
+	font-size : 100%;
+}
+
+.vis-time-axis
+{
+	font-size : 100%;
+}
+
+.vis-item
+{
+	font-size : var(--itemfontsize);
+	border-color : #cccccc;
+	background-color : #cccccc;
+}
+
+.vis-item.vis-cluster
+{
+	text-align : left;
+	border-color : #cccccc;
+	background-color : #cccccc;
+}
+
+.vis-item .vis-item-content
+{
+	padding: 0px;
+}
+
+
+/* alternating column backgrounds */
+.vis-time-axis .vis-grid.vis-odd
+{
+  background: #f5f5f5;
+}
+
+
+/* range overflow */
+.vis-item.class0 .vis-item-overflow
+{
+  overflow: var(--overflowtype);
+}
+
+.vis-item.class1 .vis-item-overflow
+{
+  overflow: var(--overflowtype);
+}
+
+.vis-item.class2 .vis-item-overflow
+{
+  overflow: var(--overflowtype);
+}
+
+.vis-item.class3 .vis-item-overflow
+{
+  overflow: var(--overflowtype);
+}
+
+.vis-item.class4 .vis-item-overflow
+{
+  overflow: var(--overflowtype);
+}
+
+.vis-item.class5 .vis-item-overflow
+{
+  overflow: var(--overflowtype);
+}
+
+.vis-item.class6 .vis-item-overflow
+{
+  overflow: var(--overflowtype);
+}
+
+.vis-item.class7 .vis-item-overflow
+{
+  overflow: var(--overflowtype);
+}
+
+.vis-item.class8 .vis-item-overflow
+{
+  overflow: var(--overflowtype);
+}
+
+.vis-item.class9 .vis-item-overflow
+{
+  overflow: var(--overflowtype);
+}
+
+
+
+
+
+.vis-item.class0
+{
+	border-color : var(--color0);
+	background-color : var(--color00);
+}
+
+.vis-item.class1
+{
+	border-color : var(--color1);
+	background-color : var(--color01);
+}
+
+.vis-item.class2
+{
+	border-color : var(--color2);
+	background-color : var(--color02);
+}
+
+.vis-item.class3
+{
+	border-color : var(--color3);
+	background-color : var(--color03);
+}
+
+.vis-item.class4
+{
+	border-color : var(--color4);
+	background-color : var(--color04);
+}
+
+.vis-item.class5
+{
+	border-color : var(--color5);
+	background-color : var(--color05);
+}
+
+.vis-item.class6
+{
+	border-color : var(--color6);
+	background-color : var(--color06);
+}
+
+.vis-item.class7
+{
+	border-color : var(--color7);
+	background-color : var(--color07);
+}
+
+.vis-item.class8
+{
+	border-color : var(--color8);
+	background-color : var(--color08);
+}
+
+.vis-item.class9
+{
+	border-color : var(--color9);
+	background-color : var(--color09);
+}
+
+/*
+1 green, dark rose, yellow, violet, 5 light green, red, orange, blue, 9 dark green, bright violet, dark orange, dark blue
+['#3CA25B', '#CB7179', '#cad750', '#7850a1', '#a1ca5a', '#f2273b', '#f2ca5a', '#78a1d7', '#a1a15a', '#ca5aca', '#ca783b', '#3b3b5a']
+*/
+
+/*
+.vis-item.politique
+{
+	border-color : #78a1d7;
+	background-color : #78a1d7;
+}
+
+.vis-item.religion
+{
+	border-color : #3b3b5a;
+	background-color : #3b3b5a;
+}
+
+.vis-item.guerre
+{
+	border-color : #7850a1;
+	background-color : #7850a1;
+}
+
+.vis-item.peinture
+{
+	border-color : #cad750;
+	background-color : #cad750;
+}
+
+.vis-item.musique
+{
+	border-color : #f2ca5a;
+	background-color : #f2ca5a;
+}
+
+.vis-item.science
+{
+	border-color : #CB7179;
+	background-color : #CB7179;
+}
+
+.vis-item.pseudoscience
+{
+	border-color : #cccccc;
+	background-color : #cccccc;
+}
+*/
+
+.chinois
+{
+	font-size : 110%;
+	color : rgb(100,100,100);
+	font-family : SimHei, SimSun-ExtB, "Arial Unicode MS Normal", MingLiu, serif;
+}
+
+.pagesize
+{
+	width : 100%;
+	/* min-width : 500px; */
+	/* max-width : 1500px; */
+	height : 100%;
+	margin : auto; /* horizontal centering */
+	/*position : relative;*/
+	padding-bottom : 0px; /* internal margin */
+	margin-bottom : 0px; /* marge extérieure */
+	overflow : hidden;
+	/* background-color : blue; */
+}
+
+.contents
+{
+	height : 100%;
+	display : block;
+	position : relative;
+	margin-top : 0px;
+	margin-left : 0px;
+    text-align : left;
+	overflow : auto;
+	/* background-color : red; */
+}
+
+.contents section
+{
+	display : block;
+	position : relative;
+	top : 40px;
+	/*position : relative;
+	top : 50%;
+	transform : translate(0%,-50%); /* vertical centering */
+	/* background-color : magenta; */
+}
+
+.contents section p
+{
+	margin-right : 10px;
+}
+
+.no-timeline
+{
+	font-size : 150%;
+	text-align : center;
+	position : relative;
+	display : block;
+	height : 100%;
+	/* padding-top : 150px; */
+}
+
+#Timeline:hover
+{
+	/* background-color : #ddddff; */
+	/* border: 4px dashed black; */
+}
+
+#Options
+{
+	/* padding-left : 50px; */
+}
+
+
+
+/* Style the tab */
+.tab {
+	/* height: 39px; */
+	/* overflow: visible; */
+	/* border: 1px solid #ccc; */
+	/* background-color: #f1f1f1; */
+	/* z-index: 20; */
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+	/* background-color: inherit; */
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+}
+
+.tab input {
+	opacity: 0;
+	position: absolute;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	background-color: #ccc;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+	/* background-color: #ccc; */
+	color: gray;
+}
+
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	height: calc(100% - 39px);
+	padding: 6px 12px;
+	/* border: 1px solid #ccc; */
+	border-top: none;
+	position: relative;
+	/* margin-top: 39px; */
+	top: 39px;
+}
+
+
+
+/* Style of the checkboxes */
+.classic-checkbox
+{
+	-webkit-appearance: none;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	/* box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05); */
+	padding: 9px;
+	margin : 0px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+
+.classic-checkbox:active, .classic-checkbox:checked:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.classic-checkbox:checked
+{
+	background-color: #e9ecee;
+	border: 1px solid #adb8c0;
+	/* box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1); */
+	color: #99a1a7;
+}
+
+.classic-checkbox:checked:after
+{
+	content: '\2714';
+	font-size: 14px;
+	position: absolute;
+	top: 0px;
+	left: 3px;
+	color: #99a1a7;
+}
+
+
+/* Tooltip container */
+.tooltip {
+	position: relative;
+	display: inline-block;
+	/* top: 50%; */
+	transform: translate(0%,10%);
+	cursor: pointer;
+	overflow: visible;
+}
+
+.tooltipmargin {
+	margin-left: 10vw;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+	visibility: hidden;
+	background-color: gray;
+	color: #fff;
+	text-align: center;
+	padding: 5px 0;
+	border-radius: 6px;
+	position: absolute;
+	z-index: 99999;
+	width: 120px;
+	top: 100%;
+	left: 50%;
+	margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+	content: " ";
+	position: absolute;
+	bottom: 100%;  /* At the top of the tooltip */
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent gray transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+
+/* Style of the load and save buttons */
+.button1
+{
+	cursor: pointer;
+	background-color: #aaaaaa;
+	color: #ffffff;
+	border-radius: 10px;
+	padding: 10px 20px;
+	margin: 10px;
+	display: inline-block;
+}
+
+.button1:hover
+{
+	background-color: #888888;
+	/* box-shadow: 0 0 8px black; */
+}
+
+
+/* Style of the results list */
+#results_list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	/* overflow: hidden; */
+}
+
+#results_list li {
+	float: left;
+	cursor: pointer;
+	padding: 16px;
+}
+
+#results_list li:hover {
+	background-color: #cccccc;
+}
+
+

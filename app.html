@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+
+	<!------------------------------------------------------------------------------------------------------>
+    
+	<head> <!--Info sur la page-->
+        <meta http-equiv="content-type" content="text/html" charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+		<link rel="icon" type="image/x-icon" href="favicon.png">
+		<link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
+		<link rel="stylesheet" href="css/w3.css" media="all" type="text/css" />
+		<link rel="stylesheet" href="css/toggle-switchy.css" media="all" type="text/css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<!--[if lte IE 7]>
+			<link rel="stylesheet" href="style_ie.css" />
+        <![endif]-->
+        <title>OnTIMELINE</title>
+    </head>
+	
+	<!------------------------------------------------------------------------------------------------------>
+
+    <body class="pagesize"> <!--Corps de la page-->
+		
+		
+		
+		<div class="contents" name="maincontent">
+			
+			<!-- Tab links: Menu -->
+			<div class="w3-top w3-bar w3-black tab" id="navbar" style="overflow:visible; z-index:20">
+				<div class="w3-bar-item"><img src="favicon.png" height="25px"></div>
+				<div class="w3-bar-item"><a href="index.html">OnTIMELINE</a></div>
+				
+				<div class="w3-bar-item">|</div>
+				
+				<button class="w3-bar-item tablinks w3-button" onclick="openTab(event, 'Timeline')" id="tab_timeline">Frise</button>
+				<button class="w3-bar-item tablinks w3-button" onclick="openTab(event, 'Options')" id="tab_options">Options</button>
+				<button class="w3-bar-item tablinks w3-button" onclick="openTab(event, 'Add')" id="tab_add">Ajouter</button>
+				
+				<div class="w3-bar-item">|</div>
+				
+				<input type="file" id="load" name="timeline_data" accept="csv">
+				<label class="tooltip" for="load"><i class="fa fa-folder-open w3-hover-opacity w3-xlarge w3-padding-small"></i><p class="tooltiptext">Choisir un fichier (.csv)</p></label>
+				
+				<input type="button" id="save" name="timeline_data">
+				<label class="tooltip" for="save"><i class="fa fa-cloud-download w3-hover-opacity w3-xlarge w3-padding-small"></i><p class="tooltiptext">Enregistrer la frise (.csv)</p></label>
+				
+				<input type="button" id="load_default" name="timeline_data">
+				<label class="tooltip" for="load_default"><i class="fa fa-file w3-hover-opacity w3-xlarge w3-padding-small"></i><p class="tooltiptext">Charger la frise par défaut</p></label>
+				
+				<input type="button" id="export_pdf" name="timeline_data">
+				<label class="tooltip" for="export_pdf"><i class="fa fa-file-pdf-o w3-hover-opacity w3-xlarge w3-padding-small"></i><p class="tooltiptext">Exporter en PDF</p></label>
+				
+			</div>
+			
+			
+			<!-- Tab content: Timeline -->
+			<div id="Timeline" class="w3-display-container tabcontent w3-animate-opacity">
+				
+				<div id="visualization" class="w3-display-middle">
+					<span class="no-timeline">
+						Pas de frise chargée, vous pouvez :
+						</br>- Choisir ou glisser-déposer un fichier de données depuis votre ordinateur <i class="fa fa-folder-open w3-large w3-padding-small"></i>
+						</br>- Charger la frise par défaut <i class="fa fa-file w3-large w3-padding-small"></i>
+						</br>- Créer une frise via des recherches Wikipedia (Ajouter)
+					</span>
+				</div>
+				
+			</div>
+			
+			<!-- Tab content: Options -->
+			<div id="Options" class="w3-display-container tabcontent w3-animate-opacity">
+				
+				<div class="w3-cell-row w3-row-padding w3-margin-top">
+					
+					<div class="w3-container w3-cell w3-half">
+						<div class="w3-container w3-gray"><h4>Options générales</h4></div>
+						
+						<div class="w3-container w3-padding-16 w3-border">
+							
+							<label class="toggle-switchy" for="enable_groups" data-size="sm" data-style="rounded">
+								<input checked type="checkbox" id="enable_groups" onchange="enableGroups(event)">
+								<span class="toggle"><span class="switch"></span></span>
+								<span class="label">Classer les éléments par groupe</span>
+							</label>
+							
+							</br></br>
+							<label class="toggle-switchy" for="enable_clusters" data-size="sm" data-style="rounded">
+								<input type="checkbox" id="enable_clusters" onchange="enableClusters(event)">
+								<span class="toggle"><span class="switch"></span></span>
+								<span class="label">Limiter le nombre d'éléments affichés</span>
+							</label>
+							
+							</br></br>
+							<label class="toggle-switchy" for="item_edit" data-size="sm" data-style="rounded">
+								<input checked type="checkbox" id="item_edit" onchange="enableEdition(event)">
+								<span class="toggle"><span class="switch"></span></span>
+								<span class="label">Autoriser l'édition les éléments (suppression)</span>
+							</label>
+							
+							</br></br>
+							<label class="toggle-switchy" for="enable_popup" data-size="sm" data-style="rounded">
+								<input checked type="checkbox" id="enable_popup" onchange="enablePopup(event)">
+								<span class="toggle"><span class="switch"></span></span>
+								<span class="label">Afficher la description des éléments</span>
+							</label>
+							
+							</br></br>
+							<label class="toggle-switchy" for="enable_stack" data-size="sm" data-style="rounded">
+								<input checked type="checkbox" id="enable_stack" onchange="enableStack(event)">
+								<span class="toggle"><span class="switch"></span></span>
+								<span class="label">Positionnement vertical auto</span>
+							</label>
+							
+							</br></br>
+							<label class="toggle-switchy" for="enable_overflow" data-size="sm" data-style="rounded">
+								<input checked type="checkbox" id="enable_overflow" onchange="enableOverflow(event)">
+								<span class="toggle"><span class="switch"></span></span>
+								<span class="label">Débordement du texte</span>
+							</label>
+							
+							</br></br>
+							<label for="item_fontsize">Taille de la police (px)</label>
+							<input type="number" class="w3-input" id="item_fontsize" style="width:30%" value="12" onchange="changeFontsize(event)">
+							
+						</div>
+					</div>
+					
+					<div class="w3-container w3-cell w3-half">
+						<div class="w3-container w3-gray"><h4>Afficher/masquer des groupes</h4></div>
+						
+						<div class="w3-container w3-padding-16 w3-border" id="showhide_div">
+						</div>
+						
+						<div class="w3-container w3-gray"><h4>Couleur des groupes</h4></div>
+						
+						<div class="w3-container w3-padding-16 w3-border" id="color_div">
+						</div>
+						
+						<div class="w3-container w3-gray"><h4>Afficher/masquer des pays</h4></div>
+						
+						<div class="w3-container w3-padding-16 w3-border" id="showhide_countries_div">
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="w3-container w3-center w3-small">
+					<p>
+					2021. Guilhem Mariotte
+					</br>
+					Timeline by <a href="https://visjs.org/" target="_blank">vis.js</a> &#124;
+					
+					PDF LaTeX compiler by <a href="https://latexonline.cc/" target="_blank">latexonline.cc</a> &#124;
+					
+					Style by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a> &#124; <a href="https://fontawesome.com/v4.7/icons/" target="_blank">fontawesome.com</a>
+					</br>
+					Data from <a href="https://www.wikipedia.org/" target="_blank">wikipedia.org</a> &#124; <a href="https://www.dbpedia.org/" target="_blank">dbpedia.org</a>
+					</p>
+				</div>
+				
+			</div>
+			
+			<!-- Tab content: Add -->
+			<div id="Add" class="w3-display-container tabcontent w3-animate-opacity">
+				
+				<form class="w3-container" style="width:60%">
+					<div class="w3-section">
+						<label><b>Rechercher sur Wikipedia</b></label>
+						<div class="w3-cell-row">
+							<input class="w3-input w3-cell w3-border" type="text" required name="Request" id="txt_request" placeholder="Entrer un ou plusieurs mots-clés">
+							<button type="submit" id="submit_request" class="w3-button w3-cell w3-dark-grey" onclick="submitRequest(event)">Rechercher</button>
+							<div class="w3-dropdown-hover">
+								<button class="w3-button" id="selected_lang">FR</button>
+								<div class="w3-dropdown-content w3-bar-block w3-card-4">
+									<button class="w3-bar-item w3-button" onclick="selectLang(event)">FR</button>
+									<button class="w3-bar-item w3-button" onclick="selectLang(event)">EN</button>
+									<button class="w3-bar-item w3-button" onclick="selectLang(event)">DE</button>
+									<button class="w3-bar-item w3-button" onclick="selectLang(event)">ES</button>
+									<button class="w3-bar-item w3-button" onclick="selectLang(event)">IT</button>
+									<button class="w3-bar-item w3-button" onclick="selectLang(event)">ZH</button>
+									<button class="w3-bar-item w3-button" onclick="selectLang(event)">RU</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				
+				<div class="w3-container">
+					<h2>Résultats</h2>
+					
+					<p id="results_msg">Aucune recherche effectuée</p>
+					
+					<ul id="results_list">
+					</ul>
+				</div>
+				
+				<div class="w3-container" style="visibility:hidden">
+					<h2>Eléments à ajouter</h2>
+					
+					<table id="results_table">
+						<tr>
+							<th>Début</br>naissance</th>
+							<th>Fin</br>mort</th>
+							<th>Nom</th>
+							<th>Description</th>
+							<th>Domaine</th>
+							<th>Pays</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</table>
+					
+					<button id="add_items" class="w3-button w3-cell w3-dark-grey" onclick="addTableItems(event)">Ajouter les éléments</button>
+				</div>
+				
+				<div class="w3-container w3-center w3-small ">
+					<p>
+					2021. Guilhem Mariotte
+					</br>
+					Timeline by <a href="https://visjs.org/" target="_blank">vis.js</a> &#124;
+					
+					PDF LaTeX compiler by <a href="https://latexonline.cc/" target="_blank">latexonline.cc</a> &#124;
+					
+					Style by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a> &#124; <a href="https://fontawesome.com/v4.7/icons/" target="_blank">fontawesome.com</a>
+					</br>
+					Data from <a href="https://www.wikipedia.org/" target="_blank">wikipedia.org</a> &#124; <a href="https://www.dbpedia.org/" target="_blank">dbpedia.org</a>
+					
+					</p>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+		
+		<script type="text/javascript" src="https://unpkg.com/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js">
+		</script>
+		
+		<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> -->
+		<!-- </script> -->
+		
+		<script src="js/papaparse.js" type="text/javascript">
+		</script>
+		
+		<script src="js/options.js" type="text/javascript">
+		</script>
+		<script src="js/utils.js" type="text/javascript">
+		</script>
+		<script src="js/main.js" type="text/javascript">
+		</script>
+		<script src="js/loadsave.js" type="text/javascript">
+		</script>
+		<script src="js/additems.js" type="text/javascript">
+		</script>
+		
+		
+    </body>
+</html>
