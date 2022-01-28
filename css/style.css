@@ -25,19 +25,6 @@ html
 	src : url('fonts/Roboto-Regular.ttf') format('truetype');
 }
 
-@function hex($hexcolor,$opacity){
-  $red:red($hexcolor);
-  $green:green($hexcolor);
-  $blue:blue($hexcolor);
-  $alpha:alpha($hexcolor);
-  @if $opacity == 1 or $opacity == 100% {
-    @return unquote("rgba(#{$red},#{$green},#{$blue},#{$alpha})");
-  }
-  @else{
-    @return unquote("rgba(#{$red},#{$green},#{$blue},#{$opacity})");
-  }
-}
-
 body, html, h1, h2, h3, h4, nav, p, tr, td, th
 {
 	/* font-family : myfont, "Arial Black", Gisha, "Levenim MT", "Trebuchet MS", "Lucida Sans", "Tempus Sans ITC", "Maiandra GD", Arial, serif; */
@@ -111,7 +98,7 @@ nav
 p a, .tabtxt a
 {
 	/* font-weight : bold; */
-	border-bottom : 1px solid black;
+	border-bottom : 1px solid;
 }
 
 nav a
@@ -143,11 +130,6 @@ address a:hover
 nav a:hover
 {
     border-bottom : 1px solid rgb(100,100,100);
-}
-
-a:visited
-{
-	/* color : rgb(100,100,100); */
 }
 
 table {
