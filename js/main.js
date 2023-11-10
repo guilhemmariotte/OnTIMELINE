@@ -148,6 +148,7 @@ function loadTimeline(data_items) {
 				// Clear file input to be able to reload the same file
 				input.value = null;
 				input.files = null;
+				droppedfiles = [];
 			}
 		});
 	}
