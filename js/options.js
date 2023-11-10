@@ -76,6 +76,7 @@ function refreshTimeline() {
 		timeline.setGroups(groups);
 		timeline.setGroups(null);
 	}
+	saveToLocalStorage();
 }
 
 function enableGroups(evt) {

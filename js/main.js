@@ -113,34 +113,44 @@ function convertTimelineData(data) {
 
 //-----------------------------------------------------------------------------------
 // Load the timeline when a data file is chosen
-function loadTimeline() {
+function loadTimeline(data_items) {
+	console.log("load");
 	var timeline_file = null;
 	if (input.files.length > 0) {
 		timeline_file = input.files[0];
-		input.value = null; // clear file path to be able to reload the same file
 	} else if (droppedfiles.length > 0) {
 		timeline_file = droppedfiles[0];
 	} else {
 		timeline_file = filename_default;
 	}
-	Papa.parse(timeline_file, {
-		header: true,
-		download: true,
-		complete: function(results) {
-			
-			// Timeline groups
-			results.data = setTimelineGroups(results.data, []);
-			
-			// Timeline countries
-			setTimelineCountries(results.data, []);
-			
-			// Timeline data
-			data_timeline = results.data;
-			
-			// Create the timeline
-			createTimeline(data_timeline);
-		}
-	});
+	if (data_items) { // data retrieved from local storage backup
+		console.log("backup");
+		// Timeline groups
+		data_items = setTimelineGroups(data_items, []);
+		// Timeline countries
+		setTimelineCountries(data_items, []);
+		// Create the timeline
+		createTimeline(data_items);
+	} else if (timeline_file) { // data from file
+		console.log("file");
+		Papa.parse(timeline_file, {
+			header: true,
+			download: true,
+			complete: function(results) {
+				// Timeline data
+				data_items = results.data;
+				// Timeline groups
+				data_items = setTimelineGroups(data_items, []);
+				// Timeline countries
+				setTimelineCountries(data_items, []);
+				// Create the timeline
+				createTimeline(data_items);
+				// Clear file input to be able to reload the same file
+				input.value = null;
+				input.files = null;
+			}
+		});
+	}
 }
 
 
@@ -466,13 +476,14 @@ function setTimelineCountries(results_data, countryids) {
 
 //-----------------------------------------------------------------------------------
 // Create the timeline
-function createTimeline(data_timeline) {
+function createTimeline(data_items) {
 	// Clear container
 	while (container.hasChildNodes()) {
 		container.removeChild(container.lastChild);
 	}
 	
 	// Timeline data
+	data_timeline = data_items;
 	var data = convertTimelineData(data_timeline);
 	items = new vis.DataSet(data);
 	items_updated = new vis.DataSet(data);
@@ -486,6 +497,7 @@ function createTimeline(data_timeline) {
 				data_timeline.splice(i, 1);
 			}
 		}
+		saveToLocalStorage();
 		callback(item);
 	}
 	
@@ -533,6 +545,9 @@ function createTimeline(data_timeline) {
 	
 	// Create a Timeline
 	timeline = new vis.Timeline(container, items, groups, defaultOptions);
+
+	// Save a backup
+	saveToLocalStorage();
 	
 	// add event listener
 	//timeline.on('rangechanged', onRangeChanged);

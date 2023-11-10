@@ -14,30 +14,25 @@
 //-----------------------------------------------------------------------------------
 // Input file
 const input = document.getElementById("load");
+input.addEventListener('change', function() {loadTimeline(null)});
 
-input.addEventListener('change', loadTimeline);
+// Load backup on page load
+document.addEventListener("DOMContentLoaded", loadTimelineFromBackup);
 
-
-// On page load
-//document.addEventListener("DOMContentLoaded", updateTimeline);
-
+// Confirm message to prevent from leaving, closing, refreshing the page
+window.addEventListener('beforeunload', function(evt) {evt.returnValue = null});
 
 // Load default
 const load_default = document.getElementById("load_default");
-
-load_default.addEventListener('click', loadTimeline);
-
+load_default.addEventListener('click', function() {loadTimeline(null)});
 
 // Save file
 const save = document.getElementById("save");
-
 save.addEventListener('click', saveTimeline);
-
 
 // Export PDF
 const export_pdf = document.getElementById("export_pdf");
-
-export_pdf.addEventListener('click', exportTimeline);
+export_pdf.addEventListener('click', exportTimelineToPDF);
 
 
 // Drag and drop
@@ -62,7 +57,7 @@ function drop(evt) {
 	var dt = evt.dataTransfer;
 	droppedfiles = [...dt.files];
 	// Load timeline
-	loadTimeline();
+	loadTimeline(null);
 }
 
 timelinediv.addEventListener("dragenter", dragenter, false);
@@ -70,10 +65,19 @@ timelinediv.addEventListener("dragover", dragover, false);
 timelinediv.addEventListener("drop", drop, false);
 
 
+//-----------------------------------------------------------------------------------
+// Upload data
+function loadTimelineFromBackup() {
+	if (window.localStorage["OnTimelineBackup"]) {
+		var data_items = JSON.parse(window.localStorage.getItem("OnTimelineBackup"));
+		loadTimeline(data_items);
+	}
+}
+
 
 //-----------------------------------------------------------------------------------
 // Download data
-function saveTimeline() {
+function saveTimelineToJSON () {
 	if (data_timeline.length > 0) {
 		groups.forEach(function (group) {
 			for (var i = 0; i < data_timeline.length; i++) {
@@ -82,7 +86,20 @@ function saveTimeline() {
 				}
 			}
 		});
-		var filecontents = Papa.unparse(data_timeline, {delimiter:";"});
+		return data_timeline
+	}
+}
+
+// Save calendar to the browser local storage
+function saveToLocalStorage() {
+	var data_items = saveTimelineToJSON();
+	window.localStorage.setItem("OnTimelineBackup", JSON.stringify(data_items));
+}
+
+function saveTimeline() {
+	if (data_timeline.length > 0) {
+		var data_items = saveTimelineToJSON();
+		var filecontents = Papa.unparse(data_items, {delimiter:";"});
 		var filename = "frise_chrono.csv";
 		savefile(filecontents, filename, 'text/plain;charset=utf-8');
 	}
@@ -109,7 +126,7 @@ function savefile(data, filename, type) {
 
 //-----------------------------------------------------------------------------------
 // Export PDF
-function exportTimeline() {
+function exportTimelineToPDF() {
 	if (data_timeline.length > 0) {
 		export_pdf.disabled = "disabled";
 		export_pdf.style.cursor = "wait";
@@ -142,7 +159,7 @@ function exportTimeline() {
 	}
 }
 
-function exportTimeline0() {
+function exportTimelineToPDF0() {
 	if (data_timeline.length > 0) {
 		var result = generateLatexCode();
 		console.log(result)

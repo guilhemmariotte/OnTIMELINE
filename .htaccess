@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://ontimeline.guilhemmariotte.com/$1 [L,R=301]
