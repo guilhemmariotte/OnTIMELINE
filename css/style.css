@@ -441,18 +441,10 @@ tr:nth-child(even) {
 	/* padding-top : 150px; */
 }
 
-#Timeline:hover
+#navbar label
 {
-	/* background-color : #ddddff; */
-	/* border: 4px dashed black; */
+	transform: translate(0%,10%); /* for icons in the nav bar */
 }
-
-#Options
-{
-	/* padding-left : 50px; */
-}
-
-
 
 /* Style the tab */
 .tab {
@@ -546,7 +538,7 @@ tr:nth-child(even) {
 	position: relative;
 	display: inline-block;
 	/* top: 50%; */
-	transform: translate(0%,10%);
+	/* transform: translate(0%,10%); */
 	cursor: pointer;
 	overflow: visible;
 }
